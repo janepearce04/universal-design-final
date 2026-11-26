@@ -7,6 +7,8 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Jost:ital,wght@0,100..900;1,100..900&family=Nova+Oval&display=swap');
+
 *,
 *:before,
 *:after {
@@ -70,9 +72,19 @@ main,
 section,
 aside,
 footer {
-  padding: 1.5em;
-  border: 2px black solid;
+  display: inline-flexbox;
+  padding: 0.5em;
+  border: 2px rgba(82, 0, 3, 0.8) dashed;
+  border-radius: 1%;
   filter: drop-shadow(0 0.5em 1rem rgba(22, 0, 20, 0.2));
+  flex-basis: content;
+}
+
+nav, section {
+  display: flex;
+  flex-shrink: 0.5rem;
+  justify-content: space-evenly;
+
 }
 
 header,
@@ -80,16 +92,27 @@ footer {
   text-align: center;
 }
 
-p, a, h1, h2, h3 {margin: 0.2em; padding: 0.6em;}
+p, a, h1, h2, h3 {
+  margin: 0.2em; 
+  padding: 0.6em; 
+  font-family: "Jost", sans-serif; 
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
 
 h1, h2, h3 {
-    font-family: var(--font-head);
+    font-family: "Nova Oval", system-ui;
+    font-weight: 900;
+    font-style: normal;
     line-height: 1.2;
+    outline: #000;
+    outline-width: 0.5em;
     color: var(--cream);
 }
 
-h1 {font-size: clamp(2rem, 5vw, 3rem); font-weight: 900;}
-h2 {font-size: 1.75rem; font-weight: 700;}
+h1 {font-size: clamp(1.8rem, 4.6vw, 2rem); font-weight: 900;}
+h2 {font-size: 1.5rem; font-weight: 700;}
 h3 {font-size: 1.375rem; font-weight: 700; color: var(--pink);}
 
 hr {
@@ -108,8 +131,14 @@ img,
 svg,
 video {
   vertical-align: middle;
+  width: 75vw;
+  height: auto;
 }
 
+aside {
+  align-content: center;
+  justify-content: center;
+}
 /*
  * Remove default fieldset styles.
  */
@@ -128,10 +157,29 @@ textarea {
   resize: vertical;
 }
 
+ul {
+  margin: 1.5em;
+  list-style-type: none;
+}
+
+li{
+  line-height: 2em;
+  font-size: 1.2rem;
+}
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
+#main {
+  display: inline-flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.caption {
+  font-size: 0.8rem;
+  color: var(--pink);
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -216,7 +264,58 @@ textarea {
 }
 
 @media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+  header,
+  nav,
+  main,
+  section,
+  aside,
+  footer {
+    display: inline-flexbox;
+    padding: 1em;
+    border: 4px rgba(82, 0, 3, 0.5) dashed;
+    border-radius: 1%;
+    filter: drop-shadow(0 0.5em 1rem rgba(82, 0, 3, 0.5));
+    flex-basis: content;
+  }
+
+  audio,
+  canvas,
+  iframe,
+  img,
+  svg,
+  video {
+    vertical-align: middle;
+    width: 40vw;
+    height: auto;
+  }
+
+  p, a {
+    margin: 0.2em; 
+    padding: 0.6em; 
+    font-family: "Jost", sans-serif; 
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.6rem;
+  }
+  h1, h2, h3 {
+    font-family: "Nova Oval", system-ui;
+    font-weight: 900;
+    font-style: normal;
+    line-height: 1.2;
+    outline: #000;
+    outline-width: 0.5em;
+    color: var(--cream);
+  }
+
+  h1 {font-size: clamp(3rem, 6vw, 4rem); font-weight: 900;}
+  h2 {font-size: 2.4rem; font-weight: 700;}
+  h3 {font-size: 1.8rem; font-weight: 700; color: var(--pink);}
+
+  .caption {
+    font-size: 1.4rem;
+  }
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -229,7 +328,7 @@ textarea {
   (-webkit-min-device-pixel-ratio: 1.25),
   (min-resolution: 1.25dppx),
   (min-resolution: 120dpi) {
-  /* Style adjustments for high resolution devices */
+
 }
 
 @media print {

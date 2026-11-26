@@ -7,22 +7,48 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-
-html {
-  color: #222;
-  font-size: 1em;
-  line-height: 1.4;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * Customize the background color to match your design.
- */
+html {
+  line-height: 0.8;
+}
+
+body {
+  background: radial-gradient(
+    circle at 100%,
+    #953f5c,
+    #700f2f 50%,
+    #802f4a 75%,
+    #672c41 75%
+  );
+  background-attachment: fixed;
+  font-family: var(--font-body);
+  color: var(--cream);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  overflow-y: scroll;
+}
+
+:root {
+    --wine: #9E2E2F;
+    --brown: #541D1D;
+    --deep: #290707;
+    --cream: #F7F5D9;
+    --link: #EA907F;
+    --pink: #ffa6c4;
+
+    --font-body: 'Atkinson Hyperlegible', Tahoma, Arial, Helvetica, sans-serif;
+    --font-head: 'Lato', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 
 ::-moz-selection {
   background: #b3d4fc;
@@ -34,9 +60,37 @@ html {
   text-shadow: none;
 }
 
-/*
- * A better looking default horizontal rule
- */
+a:link {color: var(--link); text-decoration: underline; text-underline-position: under;}
+a:visited {color: var(--link); text-decoration: underline;}
+a:hover {color: var(--cream); text-decoration: underline; text-decoration-thickness: 3px;}
+
+header,
+nav,
+main,
+section,
+aside,
+footer {
+  padding: 1.5em;
+  border: 2px black solid;
+  filter: drop-shadow(0 0.5em 1rem rgba(22, 0, 20, 0.2));
+}
+
+header,
+footer {
+  text-align: center;
+}
+
+p, a, h1, h2, h3 {margin: 0.2em; padding: 0.6em;}
+
+h1, h2, h3 {
+    font-family: var(--font-head);
+    line-height: 1.2;
+    color: var(--cream);
+}
+
+h1 {font-size: clamp(2rem, 5vw, 3rem); font-weight: 900;}
+h2 {font-size: 1.75rem; font-weight: 700;}
+h3 {font-size: 1.375rem; font-weight: 700; color: var(--pink);}
 
 hr {
   display: block;
@@ -46,12 +100,6 @@ hr {
   margin: 1em 0;
   padding: 0;
 }
-
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
 
 audio,
 canvas,
@@ -88,23 +136,32 @@ textarea {
    Helper classes
    ========================================================================== */
 
-/*
- * Hide visually and from screen readers
- */
+.skip-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0.75rem 1.25rem;
+    background: var(--cream);
+    color: var(--deep);
+    font-weight: 700;
+    text-decoration: underline;
+    transform: translateY(-120%);
+}
+
+.skip-link:link,
+.skip-link:visited {
+    color: var(--deep);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
 
 .hidden,
 [hidden] {
   display: none !important;
 }
-
-/*
- * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- *
- * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
- */
 
 .visually-hidden {
   border: 0;
@@ -136,9 +193,6 @@ textarea {
   width: auto;
 }
 
-/*
- * Hide visually and from screen readers, but maintain layout
- */
 
 .invisible {
   visibility: hidden;
@@ -161,14 +215,14 @@ textarea {
   clear: both;
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
 @media only screen and (min-width: 35em) {
   /* Style adjustments for viewports that meet the condition */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
 @media print,
@@ -177,12 +231,6 @@ textarea {
   (min-resolution: 120dpi) {
   /* Style adjustments for high resolution devices */
 }
-
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   https://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
 
 @media print {
   *,
